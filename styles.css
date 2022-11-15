@@ -101,6 +101,16 @@ body {
 
     background:rgb(14, 80, 52);
     border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen-content {
+    width: 90%;
+    direction: rtl;
+    font-size: 24px;
 }
 
 .buttons-container {
