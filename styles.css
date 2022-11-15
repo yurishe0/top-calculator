@@ -100,7 +100,7 @@ body {
     height: 70%;
 
     background:rgb(14, 80, 52);
-    border-radius: 4px;
+    border-radius: 7px;
 
     display: flex;
     align-items: center;
@@ -109,7 +109,7 @@ body {
 
 .screen-content {
     width: 90%;
-    direction: rtl;
+    /* direction: rtl; */
     font-size: 24px;
 }
 
@@ -133,7 +133,7 @@ body {
 
 .button {
     background: rgb(51, 53, 53);
-    border-radius: 3px;
+    border-radius: 7px;
 
     font-size: 24px;
     font-weight: 1000;
