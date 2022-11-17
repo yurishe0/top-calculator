@@ -13,6 +13,7 @@ let currentExpression = [];
 buttonNumbers.forEach(button => button.addEventListener('click', () => {
     currentNumber += button.dataset.value;
     currentNumberDisplay = button.dataset.value;
+    console.log(currentNumber, currentNumberDisplay);
 
     screenContent.textContent += currentNumberDisplay;
 }));
@@ -88,8 +89,8 @@ function calculate(expression) {
 
             i = 1;
             let currentOperator = expression[i];
-            let number1 = parseInt(expression[i - 1]);
-            let number2 = parseInt(expression[i + 1]);
+            let number1 = parseFloat(expression[i - 1]);
+            let number2 = parseFloat(expression[i + 1]);
 
             console.log(number1, currentOperator, number2);
             let result = 0;
@@ -118,5 +119,7 @@ function calculate(expression) {
 
     }
 
+    screenContent.textContent = currentExpression;
     currentExpression = [];
+    currentExpression.push(screenContent.textContent);
 }
