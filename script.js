@@ -1,10 +1,6 @@
-const calculator = document.querySelector(".calculator");
 const screenContent = document.querySelector(".screen-content");
-const buttons = document.querySelectorAll(".button");
 const buttonNumbers = document.querySelectorAll(".number");
 const buttonOperators = document.querySelectorAll(".operator");
-const equalsButton = document.querySelector(".equals");
-const clearButton = document.querySelector(".clear")
 
 let currentNumber = "";
 let currentExpression = [];
