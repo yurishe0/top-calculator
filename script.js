@@ -111,9 +111,9 @@ function calculate(expression) {
 
             expression.splice(i - 1, 3);
 
+            result = +result.toFixed(4);
             result = result.toString();
             expression.unshift(result);
-            console.log(expression);
         }
 
     }
