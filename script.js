@@ -13,7 +13,6 @@ let currentExpression = [];
 buttonNumbers.forEach(button => button.addEventListener('click', () => {
     currentNumber += button.dataset.value;
     currentNumberDisplay = button.dataset.value;
-    console.log(currentNumber, currentNumberDisplay);
 
     screenContent.textContent += currentNumberDisplay;
 }));
@@ -120,6 +119,7 @@ function calculate(expression) {
     }
 
     screenContent.textContent = currentExpression;
-    currentExpression = [];
-    currentExpression.push(screenContent.textContent);
+
+    currentNumber = currentExpression[0];
+    currentExpression.shift();
 }
