@@ -1,5 +1,4 @@
 const calculator = document.querySelector(".calculator");
-const screen = document.querySelector(".screen");
 const screenContent = document.querySelector(".screen-content");
 const buttons = document.querySelectorAll(".button");
 const buttonNumbers = document.querySelectorAll(".number");
@@ -9,10 +8,15 @@ const clearButton = document.querySelector(".clear")
 
 let currentNumber = "";
 let currentExpression = [];
+let lastInput = "";
+let previousInput = "";
 
 buttonNumbers.forEach(button => button.addEventListener('click', () => {
     currentNumber += button.dataset.value;
     currentNumberDisplay = button.dataset.value;
+    previousInput = lastInput;
+    lastInput = button.dataset.value;
+
 
     screenContent.textContent += currentNumberDisplay;
 }));
@@ -20,6 +24,9 @@ buttonNumbers.forEach(button => button.addEventListener('click', () => {
 buttonOperators.forEach(button => button.addEventListener('click', () => {
     let operator = button.dataset.value;
     let operatorSymbol = "";
+    previousInput = lastInput;
+    lastInput = button.dataset.value;
+
 
     switch (operator) {
         case "add":
@@ -36,12 +43,13 @@ buttonOperators.forEach(button => button.addEventListener('click', () => {
             break;
     }
 
-    screenContent.textContent += ` ${operatorSymbol} `;
-    currentExpression.push(currentNumber);
-    currentNumber = "";
-
-
-    currentExpression.push(operator);
+    // Prevent putting two operators in a row, then push the operator to the screen and to the expression.
+    if(previousInput != "add" && previousInput != "substract" && previousInput != "multiply" && previousInput != "divide"){
+        screenContent.textContent += ` ${operatorSymbol} `;
+        currentExpression.push(currentNumber);
+        currentExpression.push(operator);
+        currentNumber = "";
+    }
 
     switch (operator) {
         case "clear":
@@ -80,8 +88,6 @@ function divide(num1, num2) {
 function calculate(expression) {
     expression.pop();
 
-    console.log(expression);
-
     for (let i = 0; i <= expression.length; i++) {
 
         if (i % 2 != 0) {
@@ -91,7 +97,7 @@ function calculate(expression) {
             let number1 = parseFloat(expression[i - 1]);
             let number2 = parseFloat(expression[i + 1]);
 
-            console.log(number1, currentOperator, number2);
+
             let result = 0;
 
             switch (currentOperator) {
@@ -112,8 +118,7 @@ function calculate(expression) {
             expression.splice(i - 1, 3);
 
             result = +result.toFixed(4);
-            result = result.toString();
-            expression.unshift(result);
+            expression.unshift(result.toString());
         }
 
     }
